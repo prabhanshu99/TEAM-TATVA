@@ -1,0 +1,17 @@
+{
+  "name": "tailwind_install",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx tailwindcss -i ./input.css -o ./output.css --watch",
+    "build": "npx tailwindcss -i ./input.css -o ./output.css --minify"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.4",
+    "tailwind-scrollbar-hide": "^4.0.0",
+    "tailwindcss": "^4.1.4"
+  }
+}

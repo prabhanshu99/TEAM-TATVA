@@ -1,0 +1,347 @@
+@import "tailwindcss";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Navbar Test</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .font-mulish {
+      font-family: 'Mulish', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-white to-blue-50 overflow-x-hidden">
+  <nav>
+    <div class="w-auto mx-20 flex items-center justify-between">
+      <a href="#" class="cursor-pointer pr-7">
+        <img src="razorpay-icon.png" width="125" height="30" alt="Logo">
+      </a>
+      <ul class="flex space-x-8 font-Mulish">
+        <li class="text-gray-700 font-sans cursor-pointer relative group">
+          <a href="#" class="border-b-4 border-transparent group-hover:border-blue-500 group-hover:text-blue-600 transition-all duration-200">Payments</a>
+        </li>
+        <li class="text-gray-700 font-sans cursor-pointer relative group">
+          <a href="#" class="border-b-4 border-transparent group-hover:border-blue-500 group-hover:text-blue-600 transition-all duration-200">Banking</a>
+        </li>
+        <li class="text-gray-700 font-sans cursor-pointer relative group">
+          <a href="#" class="border-b-4 border-transparent group-hover:border-blue-500 group-hover:text-blue-600 transition-all duration-200">Corporate Card</a>
+        </li>
+        <li class="text-gray-700 font-sans cursor-pointer relative group">
+          <a href="#" class="border-b-4 border-transparent group-hover:border-blue-500 group-hover:text-blue-600 transition-all duration-200">Payroll</a>
+        </li>
+        <li class="text-gray-700 font-sans cursor-pointer relative group">
+          <a href="#" class="border-b-4 border-transparent group-hover:border-blue-500 group-hover:text-blue-600 transition-all duration-200">Engage</a>
+        </li>
+        <li class="text-gray-700 font-sans cursor-pointer relative group">
+          <a href="#" class="border-b-4 border-transparent group-hover:border-blue-500 group-hover:text-blue-600 transition-all duration-200">Resources</a>
+        </li>
+        <li class="text-gray-700 font-sans cursor-pointer relative group">
+          <a href="#" class="border-b-4 border-transparent group-hover:border-blue-500 group-hover:text-blue-600 transition-all duration-200">Pricing</a>
+        </li>
+      </ul>
+      <div class="flex justify-between space-x-6">
+        <i class="fa-solid fa-headset py-0.5 px-5 text-3xl text-gray-700"></i>
+        <img class="overflow-hidden" src="Flag_of_India.svg.webp" width="50px" height="0.5px" alt="ind-flag">
+        <button class="py-0.5 px-5 border-blue-400 border-2 rounded">Log In</button>
+        <button class="py-0.5 px-5 bg-blue-500 gap-0.5 rounded text-white hover:bg-blue-600 transition-all duration-200">Sign Up <i class="fa-solid fa-arrow-right-long"></i></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Slideshow Section -->
+  <div class="relative w-full overflow-hidden py-10">
+    <div id="hero-slides" class="relative">
+      <div class="slide block">
+        <!-- Slide 1 content -->
+        <section class="max-w-[1200px] mx-auto  py-10 flex flex-col lg:flex-row items-center justify-between relative">
+          <!-- Left Content -->
+          <div class="max-w-xl text-center lg:text-left z-10">
+            <h1 class="text-4xl lg:text-5xl font-bold leading-tight text-blue-600 mb-4">
+              Advanced Payment Solutions
+            </h1>
+            <p class="text-3xl font-semibold text-gray-900 mb-4">
+              for India's boldest disruptors
+            </p>
+            <p class="text-gray-500 text-lg mb-6">
+              100+ Payment Methods | Easy Integration | Powerful Dashboard
+            </p>
+      
+            <div class="flex flex-col sm:flex-row sm:items-center sm:space-x-6 space-y-3 sm:space-y-0 justify-center lg:justify-start">
+              <a href="#" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg text-lg font-semibold transition shadow-md">
+                Sign Up Now &rarr;
+              </a>
+              <a href="#" class="text-blue-600 hover:text-blue-800 text-lg font-semibold transition">
+                Know More
+              </a>
+            </div>
+          </div>
+      
+          <!-- Right Visual Section -->
+          <div class="relative mt-16 lg:mt-0 w-full max-w-lg flex items-end justify-start lg:-ml-5">
+      
+            <!-- Blue Shape Behind -->
+            <div class="absolute top-0 right-0 w-[450px] h-[480px] -z-10">
+              <img src="K67zqxljSwqr3qyboWbs4TwnLME (1).png" alt="" class="w-full h-full object-contain" />
+            </div>
+            
+      
+            <!-- Person Image -->
+            <img src="kkOygtHRHYPv76o5PniXD7eNI (1).png" alt="Person" class="z-10 w-[350px] object-contain relative -ml-10 lg:-ml-40" />
+      
+      
+            <!-- Product Info Box -->
+            <div class="absolute top-11 right-14 w-[240px] bg-white shadow-lg rounded-xl py-2 z-20">
+              <div class="bg-[#D9F99D] px-2 py-1 rounded-t-md text-sm font-bold text-gray-700">
+                Payments
+                <span class="block text-xs font-normal text-gray-600">powers <span class="font-bold text-black">mamaearth™</span></span>
+              </div>
+              <div class="p-3 text-sm">
+                <div class="flex justify-between items-center mb-3">
+                  <div>
+                    <p class="text-gray-500">Body Lotion</p>
+                    <p class="text-lg font-semibold text-gray-800">₹ 455</p>
+                  </div>
+                  <img src="zuC0KCzg1TupqgOQ9tAM4Ht6I (1).png" alt="Product" class="w-10 h-20 object-contain" />
+                </div>
+                <p class="text-gray-500">Select Payment Method</p>
+                <ul class="text-gray-400 mt-1 space-y-1 text-xs">
+                  <li>Card</li>
+                  <li>UPI ID</li>
+                  <li>Netbanking</li>
+                  <li>EMI</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+      <div class="slide hidden">
+        <!-- Slide 2 content -->
+        <section class="max-w-[1200px] mx-auto  py-10 flex flex-col lg:flex-row items-center justify-between relative">
+          <!-- Left Content -->
+          <div class="max-w-xl text-center lg:text-left z-10">
+            <h1 class="text-4xl lg:text-5xl font-bold leading-tight text-blue-600 mb-4">
+              Advanced Payment Solutions
+            </h1>
+            <p class="text-3xl font-semibold text-gray-900 mb-4">
+              for India's boldest disruptors
+            </p>
+            <p class="text-gray-500 text-lg mb-6">
+              100+ Payment Methods | Easy Integration | Powerful Dashboard
+            </p>
+      
+            <div class="flex flex-col sm:flex-row sm:items-center sm:space-x-6 space-y-3 sm:space-y-0 justify-center lg:justify-start">
+              <a href="#" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg text-lg font-semibold transition shadow-md">
+                Sign Up Now &rarr;
+              </a>
+              <a href="#" class="text-blue-600 hover:text-blue-800 text-lg font-semibold transition">
+                Know More
+              </a>
+            </div>
+          </div>
+      
+          <!-- Right Visual Section -->
+          <div class="relative mt-16 lg:mt-0 w-full max-w-lg flex items-end justify-start lg:-ml-5">
+      
+            <!-- Blue Shape Behind -->
+            <div class="absolute top-0 right-0 w-[450px] h-[480px] -z-10">
+              <img src="K67zqxljSwqr3qyboWbs4TwnLME (1).png" alt="" class="w-full h-full object-contain" />
+            </div>
+            
+      
+            <!-- Person Image -->
+            <img src="jZN3Op6rpMb9xc279dbIJ0k6RA.png" alt="Person" class="z-10 w-[350px] object-contain relative -ml-10 lg:-ml-40" />
+      
+      
+            <!-- Product Info Box -->
+            <div class="absolute top-11 right-14 w-[240px] bg-white shadow-lg rounded-xl py-2 z-20">
+              <div class="bg-[#D9F99D] px-2 py-1 rounded-t-md text-sm font-bold text-gray-700">
+                Payments
+                <span class="block text-xs font-normal text-gray-600">powers <span class="font-bold text-black">mamaearth™</span></span>
+              </div>
+              <div class="p-3 text-sm">
+                <div class="flex justify-between items-center mb-3">
+                  <div>
+                    <p class="text-gray-500">Body Lotion</p>
+                    <p class="text-lg font-semibold text-gray-800">₹ 455</p>
+                  </div>
+                  <img src="zuC0KCzg1TupqgOQ9tAM4Ht6I (1).png" alt="Product" class="w-10 h-20 object-contain" />
+                </div>
+                <p class="text-gray-500">Select Payment Method</p>
+                <ul class="text-gray-400 mt-1 space-y-1 text-xs">
+                  <li>Card</li>
+                  <li>UPI ID</li>
+                  <li>Netbanking</li>
+                  <li>EMI</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+        
+      </div>
+      <div class="slide hidden">
+        <!-- Slide 3 content -->
+        <section class="max-w-[1200px] mx-auto  py-10 flex flex-col lg:flex-row items-center justify-between relative">
+          <!-- Left Content -->
+          <div class="max-w-xl text-center lg:text-left z-10">
+            <h1 class="text-4xl lg:text-5xl font-bold leading-tight text-blue-600 mb-4">
+              Advanced Payment Solutions
+            </h1>
+            <p class="text-3xl font-semibold text-gray-900 mb-4">
+              for India's boldest disruptors
+            </p>
+            <p class="text-gray-500 text-lg mb-6">
+              100+ Payment Methods | Easy Integration | Powerful Dashboard
+            </p>
+      
+            <div class="flex flex-col sm:flex-row sm:items-center sm:space-x-6 space-y-3 sm:space-y-0 justify-center lg:justify-start">
+              <a href="#" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg text-lg font-semibold transition shadow-md">
+                Sign Up Now &rarr;
+              </a>
+              <a href="#" class="text-blue-600 hover:text-blue-800 text-lg font-semibold transition">
+                Know More
+              </a>
+            </div>
+          </div>
+      
+          <!-- Right Visual Section -->
+          <div class="relative mt-16 lg:mt-0 w-full max-w-lg flex items-end justify-start lg:-ml-5">
+      
+            <!-- Blue Shape Behind -->
+            <div class="absolute top-0 right-0 w-[450px] h-[480px] -z-10">
+              <img src="K67zqxljSwqr3qyboWbs4TwnLME (1).png" alt="" class="w-full h-full object-contain" />
+            </div>
+            
+      
+            <!-- Person Image -->
+            <img src="wbiGlgM3MnvENjxeAwDiWdOGWRA.png" alt="Person" class="z-10 w-[350px] object-contain relative -ml-10 lg:-ml-40" />
+      
+      
+            <!-- Product Info Box -->
+            <div class="absolute top-11 right-14 w-[240px] bg-white shadow-lg rounded-xl py-2 z-20">
+              <div class="bg-[#D9F99D] px-2 py-1 rounded-t-md text-sm font-bold text-gray-700">
+                Payments
+                <span class="block text-xs font-normal text-gray-600">powers <span class="font-bold text-black">mamaearth™</span></span>
+              </div>
+              <div class="p-3 text-sm">
+                <div class="flex justify-between items-center mb-3">
+                  <div>
+                    <p class="text-gray-500">Body Lotion</p>
+                    <p class="text-lg font-semibold text-gray-800">₹ 455</p>
+                  </div>
+                  <img src="zuC0KCzg1TupqgOQ9tAM4Ht6I (1).png" alt="Product" class="w-10 h-20 object-contain" />
+                </div>
+                <p class="text-gray-500">Select Payment Method</p>
+                <ul class="text-gray-400 mt-1 space-y-1 text-xs">
+                  <li>Card</li>
+                  <li>UPI ID</li>
+                  <li>Netbanking</li>
+                  <li>EMI</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+       
+      </div>
+      <div class="slide hidden">
+        <!-- Slide 4 content -->
+        <section class="max-w-[1200px] mx-auto  py-10 flex flex-col lg:flex-row items-center justify-between relative">
+          <!-- Left Content -->
+          <div class="max-w-xl text-center lg:text-left z-10">
+            <h1 class="text-4xl lg:text-5xl font-bold leading-tight text-blue-600 mb-4">
+              Advanced Payment Solutions
+            </h1>
+            <p class="text-3xl font-semibold text-gray-900 mb-4">
+              for India's boldest disruptors
+            </p>
+            <p class="text-gray-500 text-lg mb-6">
+              100+ Payment Methods | Easy Integration | Powerful Dashboard
+            </p>
+      
+            <div class="flex flex-col sm:flex-row sm:items-center sm:space-x-6 space-y-3 sm:space-y-0 justify-center lg:justify-start">
+              <a href="#" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg text-lg font-semibold transition shadow-md">
+                Sign Up Now &rarr;
+              </a>
+              <a href="#" class="text-blue-600 hover:text-blue-800 text-lg font-semibold transition">
+                Know More
+              </a>
+            </div>
+          </div>
+      
+          <!-- Right Visual Section -->
+          <div class="relative mt-16 lg:mt-0 w-full max-w-lg flex items-end justify-start lg:-ml-5">
+      
+            <!-- Blue Shape Behind -->
+            <div class="absolute top-0 right-0 w-[450px] h-[480px] -z-10">
+              <img src="K67zqxljSwqr3qyboWbs4TwnLME (1).png" alt="" class="w-full h-full object-contain" />
+            </div>
+            
+      
+            <!-- Person Image -->
+            <img src="0u2P7K4ba3Ynqv5HppyPCPqAvCc.png" alt="Person" class="z-10 w-[350px] object-contain relative -ml-10 lg:-ml-40" />
+      
+      
+            <!-- Product Info Box -->
+            <div class="absolute top-11 right-14 w-[240px] bg-white shadow-lg rounded-xl py-2 z-20">
+              <div class="bg-[#D9F99D] px-2 py-1 rounded-t-md text-sm font-bold text-gray-700">
+                Payments
+                <span class="block text-xs font-normal text-gray-600">powers <span class="font-bold text-black">mamaearth™</span></span>
+              </div>
+              <div class="p-3 text-sm">
+                <div class="flex justify-between items-center mb-3">
+                  <div>
+                    <p class="text-gray-500">Body Lotion</p>
+                    <p class="text-lg font-semibold text-gray-800">₹ 455</p>
+                  </div>
+                  <img src="zuC0KCzg1TupqgOQ9tAM4Ht6I (1).png" alt="Product" class="w-10 h-20 object-contain" />
+                </div>
+                <p class="text-gray-500">Select Payment Method</p>
+                <ul class="text-gray-400 mt-1 space-y-1 text-xs">
+                  <li>Card</li>
+                  <li>UPI ID</li>
+                  <li>Netbanking</li>
+                  <li>EMI</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+       
+      </div>
+    </div>
+
+    <!-- Navigation Buttons -->
+    <div class="absolute bottom-5 left-1/2 transform -translate-x-1/2 flex space-x-4">
+      <button onclick="changeSlide(-1)" class="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700">&larr;</button>
+      <button onclick="changeSlide(1)" class="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700">&rarr;</button>
+    </div>
+  </div>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+
+    function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.classList.add('hidden');
+      slide.classList.remove('block');
+    });
+    slides[index].classList.remove('hidden');
+    slides[index].classList.add('block');
+  }
+
+
+    function changeSlide(direction) {
+      currentSlide = (currentSlide + direction + slides.length) % slides.length;
+      showSlide(currentSlide);
+    }
+
+    setInterval(() => changeSlide(1), 6000);
+  </script>
+</body>
+</html>

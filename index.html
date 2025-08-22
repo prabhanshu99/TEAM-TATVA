@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- <title>Navbar Test</title> -->
+  <title>Sportify - Find Your Game, Find Your Team</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.socket.io/4.7.4/socket.io.min.js"></script>
+  <script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    primary: '#F97316',
+                    secondary: '#3B82F6',
+                    success: '#10B981',
+                    warning: '#F59E0B',
+                    danger: '#EF4444'
+                }
+            }
+        }
+    }
+</script>
+
+  
+</head>
+<body>
+
+  
+    <style>
+        /* .gradient-bg {
+            /* background: linear-gradient(135deg, #F97316 0%, #3B82F6 100%); main */
+            /* background: linear-gradient(135deg, #EF4444 0%, #F97316 100%); */
+            /* background: linear-gradient(135deg, #F97316 0%, #3B82F6 40%, #8B5CF6 100%); */
+            /* background: linear-gradient(135deg, #10B981 0%, #06B6D4 100%); 
+        } */
+        .animated-gradient {
+  background: linear-gradient(270deg, #F97316, #3B82F6, #8B5CF6, #10B981);
+  background-size: 800% 800%;
+  animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+        .sport-card {
+            transition: all 0.3s ease;
+        }
+        .sport-card:hover {
+            transform: translateY(-4px);
+        }
+        .notification-badge {
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg fixed top-0 w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <h1 class="text-2xl font-bold text-primary">Sportify</h1>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#" class="nav-link text-gray-900 hover:text-primary px-3 py-2 rounded-md text-sm font-medium" data-page="home">Home</a>
+                        <a href="#" class="nav-link text-gray-500 hover:text-primary px-3 py-2 rounded-md text-sm font-medium" data-page="discover">Discover</a>
+                        <a href="#" class="nav-link text-gray-500 hover:text-primary px-3 py-2 rounded-md text-sm font-medium" data-page="create">Create Game</a>
+                        <a href="#" class="nav-link text-gray-500 hover:text-primary px-3 py-2 rounded-md text-sm font-medium" data-page="profile">Profile</a>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button id="notifications-btn" class="relative p-2 text-gray-400 hover:text-primary">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+                        </svg>
+                        <span id="notification-count" class="hidden absolute -top-1 -right-1 h-5 w-5 bg-danger text-white text-xs rounded-full flex items-center justify-center notification-badge">0</span>
+                    </button>
+                    <button id="auth-btn" class="bg-primary text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition duration-300">Sign In</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-16">
+        <!-- Home Page -->
+        <div id="home-page" class="page">
+            <!-- Hero Section -->
+            <section class="animated-gradient text-white py-20">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <h2 class="text-5xl font-bold mb-6">Find Your Game, Find Your Team</h2>
+                    <p class="text-xl mb-8 max-w-2xl mx-auto">Connect with local players instantly. Create or join games anytime, anywhere. Turn empty fields into thriving arenas.</p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <button class="bg-white text-primary px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition duration-300" data-page="discover">Find Games Near Me</button>
+                        <button class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-primary transition duration-300" data-page="create">Create a Game</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sports Grid -->
+            <section class="py-16 bg-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h3 class="text-3xl font-bold text-center mb-12 text-gray-900">Popular Sports</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                        <div class="sport-card bg-gradient-to-br from-orange-100 to-orange-400 p-6 rounded-lg text-center cursor-pointer" style="background-image: url(football.jpg);">
+                            <div class="text-4xl mb-3">⚽</div>
+                            <h4 class="font-semibold text-gray-800">Football</h4>
+                            <p class="text-sm text-gray-600 mt-1">Join the world's game</p>
+                        </div>
+                        <div class="sport-card bg-gradient-to-br from-blue-100 to-blue-400 p-6 rounded-lg text-center cursor-pointer">
+                            <div class="text-4xl mb-3">🏀</div>
+                            <h4 class="font-semibold text-gray-800">Basketball</h4>
+                            <p class="text-sm text-gray-600 mt-1">Shoot your shot</p>
+                        </div>
+                        <div class="sport-card bg-gradient-to-br from-green-100 to-green-400 p-6 rounded-lg text-center cursor-pointer">
+                            <div class="text-4xl mb-3">🎾</div>
+                            <h4 class="font-semibold text-gray-800">Tennis</h4>
+                            <p class="text-sm text-gray-600 mt-1">Ace your game</p>
+                        </div>
+                        <div class="sport-card bg-gradient-to-br from-purple-100 to-purple-400 p-6 rounded-lg text-center cursor-pointer">
+                            <div class="text-4xl mb-3">🏐</div>
+                            <h4 class="font-semibold text-gray-800">Volleyball</h4>
+                            <p class="text-sm text-gray-600 mt-1">Bump, set, spike</p>
+                        </div>
+                        <div class="sport-card bg-gradient-to-br from-red-200 to-red-300
+                        p-6 rounded-lg text-center cursor-pointer">
+                          <div class="text-4xl mb-3">🏐</div>
+                          <h4 class="font-semibold text-gray-800">cricket</h4>
+                          <p class="text-sm text-gray-600 mt-1">“Dribble, Shoot, Score”</p>
+                      </div>
+                      <div class="sport-card bg-gradient-to-br from-pink-100 to-red-400
+
+                      p-6 rounded-lg text-center cursor-pointer">
+                        <div class="text-4xl mb-3">🏐</div>
+                        <h4 class="font-semibold text-gray-800">pickalball</h4>
+                        <p class="text-sm text-gray-600 mt-1">Bump, set, spike</p>
+                    </div>
+                    <div class="sport-card bg-gradient-to-br from-purple-100 to-orange-200
+                    p-6 rounded-lg text-center cursor-pointer">
+                      <div class="text-4xl mb-3">🏐</div>
+                      <h4 class="font-semibold text-gray-800">Basketball</h4>
+                      <p class="text-sm text-gray-600 mt-1">Dribble, Shoot, Score”</p>
+                  </div>
+                  <div class="sport-card bg-gradient-to-br from-purple-100 to-blue-200 p-6 rounded-lg text-center cursor-pointer">
+                    <div class="text-4xl mb-3">🏐</div>
+                    <h4 class="font-semibold text-gray-800">Golf</h4>
+                    <p class="text-sm text-gray-600 mt-1">Bump, set, spike</p>
+                </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Features Section -->
+            <section class="py-16 bg-gray-50">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h3 class="text-3xl font-bold text-center mb-12 text-gray-900">Why Choose Sportify?</h3>
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <div class="bg-white p-8 rounded-lg shadow-md text-center">
+                            <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                                <svg class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                            </div>
+                            <h4 class="text-xl font-semibold mb-3">Location-Based Matching</h4>
+                            <p class="text-gray-600">Find games and players near you with our smart location technology</p>
+                        </div>
+                        <div class="bg-white p-8 rounded-lg shadow-md text-center">
+                            <div class="w-16 h-16 bg-secondary rounded-full flex items-center justify-center mx-auto mb-4">
+                                <svg class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                </svg>
+                            </div>
+                            <h4 class="text-xl font-semibold mb-3">Real-Time Updates</h4>
+                            <p class="text-gray-600">Get instant notifications and live updates on game status</p>
+                        </div>
+                        <div class="bg-white p-8 rounded-lg shadow-md text-center">
+                            <div class="w-16 h-16 bg-success rounded-full flex items-center justify-center mx-auto mb-4">
+                                <svg class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                                </svg>
+                            </div>
+                            <h4 class="text-xl font-semibold mb-3">In-App Chat</h4>
+                            <p class="text-gray-600">Coordinate with teammates and organize games seamlessly</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Discover Page -->
+        <div id="discover-page" class="page hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                <!-- Search Filters -->
+                <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                    <h3 class="text-2xl font-bold mb-6 text-gray-900">Discover Games Near You</h3>
+                    <div class="grid md:grid-cols-4 gap-4">
+                        <select id="sport-filter" class="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary">
+                            <option value="">All Sports</option>
+                            <option value="football">Football</option>
+                            <option value="basketball">Basketball</option>
+                            <option value="tennis">Tennis</option>
+                            <option value="volleyball">Volleyball</option>
+                        </select>
+                        <input type="date" id="date-filter" class="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary">
+                        <select id="distance-filter" class="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary">
+                            <option value="5">Within 5km</option>
+                            <option value="10">Within 10km</option>
+                            <option value="25">Within 25km</option>
+                            <option value="50">Within 50km</option>
+                        </select>
+                        <button id="search-btn" class="bg-primary text-white px-6 py-2 rounded-md hover:bg-orange-600 transition duration-300">Search</button>
+                    </div>
+                </div>
+
+                <!-- Map Container -->
+                <div class="bg-white rounded-lg shadow-md mb-8">
+                    <div id="map" class="h-96 w-full rounded-lg bg-gray-200 flex items-center justify-center">
+                        <p class="text-gray-500">Map will load here (Google Maps integration required)</p>
+                    </div>
+                </div>
+
+                <!-- Games List -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="games-list">
+                    <!-- Game cards will be dynamically loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Create Game Page -->
+        <div id="create-page" class="page hidden">
+            <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                <div class="bg-white rounded-lg shadow-md p-8">
+                    <h3 class="text-2xl font-bold mb-6 text-gray-900">Create a New Game</h3>
+                    <form id="create-game-form" class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Sport</label>
+                            <select id="create-sport" required class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary">
+                                <option value="">Select a sport</option>
+                                <option value="football">Football</option>
+                                <option value="basketball">Basketball</option>
+                                <option value="tennis">Tennis</option>
+                                <option value="volleyball">Volleyball</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Game Title</label>
+                            <input type="text" id="create-title" required class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary" placeholder="e.g., Sunday Morning Football">
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Date</label>
+                                <input type="date" id="create-date" required class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Time</label>
+                                <input type="time" id="create-time" required class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Location</label>
+                            <input type="text" id="create-location" required class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Park name or address">
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Players Needed</label>
+                                <input type="number" id="create-players" required min="1" max="20" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Skill Level</label>
+                                <select id="create-skill" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary">
+                                    <option value="any">Any Level</option>
+                                    <option value="beginner">Beginner</option>
+                                    <option value="intermediate">Intermediate</option>
+                                    <option value="advanced">Advanced</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Description</label>
+                            <textarea id="create-description" rows="3" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Additional details about the game..."></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-primary text-white py-3 rounded-md font-semibold hover:bg-orange-600 transition duration-300">Create Game</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile Page -->
+        <div id="profile-page" class="page hidden">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="gradient-bg px-6 py-8 text-white text-center">
+                        <div class="w-24 h-24 bg-white rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <span class="text-2xl font-bold text-gray-800" id="profile-avatar">JP</span>
+                        </div>
+                        <h2 class="text-2xl font-bold" id="profile-name">John Player</h2>
+                        <p class="text-lg" id="profile-location">San Francisco, CA</p>
+                    </div>
+                    <div class="p-6">
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <div>
+                                <h3 class="text-lg font-semibold mb-4 text-gray-900">Sports Preferences</h3>
+                                <div class="space-y-2" id="sports-preferences">
+                                    <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                                        <span>⚽ Football</span>
+                                        <span class="text-sm text-gray-600">Intermediate</span>
+                                    </div>
+                                    <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                                        <span>🏀 Basketball</span>
+                                        <span class="text-sm text-gray-600">Beginner</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold mb-4 text-gray-900">Game Stats</h3>
+                                <div class="space-y-3">
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Games Played</span>
+                                        <span class="font-semibold">24</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Games Organized</span>
+                                        <span class="font-semibold">8</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Rating</span>
+                                        <div class="flex text-yellow-400">
+                                            <span>★★★★☆</span>
+                                            <span class="text-gray-600 ml-1">4.2</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Games -->
+                <div class="bg-white rounded-lg shadow-md mt-8 p-6">
+                    <h3 class="text-lg font-semibold mb-4 text-gray-900">Recent Games</h3>
+                    <div class="space-y-4" id="recent-games">
+                        <!-- Recent games will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Chat Modal -->
+    <div id="chat-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50">
+        <div class="fixed right-0 top-0 h-full w-96 bg-white shadow-lg transform translate-x-full transition-transform duration-300" id="chat-container">
+            <div class="p-4 border-b">
+                <div class="flex items-center justify-between">
+                    <h3 class="font-semibold">Game Chat</h3>
+                    <button id="close-chat" class="text-gray-500 hover:text-gray-700">
+                        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="flex-1 p-4 h-80 overflow-y-auto" id="chat-messages">
+                <!-- Chat messages will appear here -->
+            </div>
+            <div class="p-4 border-t">
+                <div class="flex space-x-2">
+                    <input type="text" id="chat-input" class="flex-1 border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Type a message...">
+                    <button id="send-message" class="bg-primary text-white px-4 py-2 rounded-md hover:bg-orange-600 transition duration-300">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Dropdown -->
+    <div id="notifications-dropdown" class="hidden absolute right-0 mt-2 w-80 bg-white rounded-md shadow-lg z-50">
+        <div class="p-4 border-b">
+            <h3 class="font-semibold">Notifications</h3>
+        </div>
+        <div class="max-h-80 overflow-y-auto" id="notifications-list">
+            <!-- Notifications will appear here -->
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script src="auth.js"></script>
+    <script src="games.js"></script>
+    <script src="Chat.js"></script>
+    <script src="notification.js"></script>
+</body>
+</html>
+  
+</body>
+</html>
